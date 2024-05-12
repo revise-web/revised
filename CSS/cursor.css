@@ -1,0 +1,37 @@
+/* Styles pour les éléments cliquables */
+a,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select,
+textarea, .cvcv,{
+    cursor: url('./cursors/cursor-pointer.png') , auto;
+}
+.ytr:hover{
+    cursor: url('./cursors/cursor-pointer.png') , auto;
+}
+
+/* Styles pour les éléments désactivés */
+[disabled] {
+    cursor: not-allowed;
+}
+/* Styles pour tous les éléments de texte */
+p,
+h1, h2, h3, h4, h5, h6,
+ul, ol, li,
+span,
+blockquote,
+pre {
+    cursor: url('./cursors/cursor-text.png') , auto
+}
+html, body, section, div, header, footer:hover{
+    cursor: url('./cursors/cursor-normal.png') , auto
+}
+*::selection {
+    background-color: RGB(1 24 219); /* Change background color on selection */
+    color: #000; /* Change text color on selection */
+  }
+div{
+    cursor: url('./cursors/cursor-normal.png') , auto
+}

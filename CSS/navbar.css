@@ -1,0 +1,63 @@
+.navbar {
+      box-shadow: 0px 12px 6px 0px rgb(255 255 255 / 7%);
+      position: relative;
+      width: 524px;
+      height: 50px;
+      background: #222;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing:border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+nav a:nth-child(1):hover~span{
+  left: 36px;
+  border-radius: 100000px;
+  width: 51px;
+}
+nav a:nth-child(2):hover~span{
+  left: 110px;
+}
+nav a:nth-child(3):hover~span{
+  left: 189px;
+  
+}
+nav a:nth-child(4):hover~span{
+  left: 269px;
+  
+}
+nav a:nth-child(5):hover~span{
+  left: 356px;
+}
+nav a:nth-child(6):hover~span{
+  left: 436px;
+}
+    nav a {
+      position: relative;
+      display: inline-block;
+      font-size: 1em;
+      font-weight: 500;
+      color: #fff;
+      text-decoration: none;
+      padding: 0 23px;
+      z-index: 1;
+    }
+    /* Style du bouton actif */
+    nav span {
+      position: absolute;
+      top: 0;
+      left: 110px;
+      width: 95px;
+      height: 100%;
+      background: linear-gradient(45deg, #0019FF, #ff3333, #0019FF);
+      border-radius: 8px;
+      box-shadow: 0px 12px 6px 0px rgb(255 255 255 / 7%);
+      transition: .5s;
+    }
+    .navbar.fixed-top {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
