@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revise • Reviser</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            margin: 0;
+            cursor: url('./cursors/cursor-normal.png') , auto;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 40px; /* Réduire la largeur */
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #222;
+            padding-top: 20px;
+            overflow: hidden; /* Cacher le contenu dépassant */
+            transition: width 0.3s; /* Ajouter une transition pour l'animation */
+        }
+
+        .sidebar:hover {
+            width: 200px; /* Élargir la barre au survol */
+        }
+
+        .sidebar button {
+            width: 100%;
+            padding: 10px 0;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            text-align: left;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar button:hover {
+            background-color: #444;
+        }
+
+        .sidebar button.active {
+            background-color: #555;
+        }
+
+        .sub-buttons {
+            margin-top: 10px;
+            padding-left: 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out; /* Ajout d'une transition pour l'effet de déroulement */
+        }
+
+        .sidebar:hover .sub-buttons {
+            max-height: 200px; /* Taille maximale des sous-boutons */
+        }
+
+        .sub-buttons button {
+            width: 80%;
+            padding: 5px 0;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            text-align: left;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s;
+        }
+
+        .sub-buttons button:hover {
+            background-color: #555;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        h3 {
+            color: #555;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .sous-matiere {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        *::selection {
+    background-color: RGB(1 24 219); /* Change background color on selection */
+    color: #000; /* Change text color on selection */
+  }
+  html, body, img, div {
+            cursor: url('./cursors/cursor-normal.png') , auto;
+        }
+
+        /* Curseur pour le texte */
+        p, h1, h2, h3:hover{
+            cursor: url('./cursors/cursor-text.png') , auto;
+        }
+        
+        /* Curseur pour les boutons */
+        .sidebar button,
+        .sub-buttons button {
+            cursor: url('./cursors/cursor-pointer.png') , auto;
+        }
+        section{
+          margin-left: 49px;
+        }
+        #loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9); /* Couleur de fond semi-transparente */
+    z-index: 9999; /* Assure que le loader est au-dessus de tout le contenu */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loader-spinner {
+    border: 4px solid #f3f3f3; /* Couleur de la bordure */
+    border-top: 4px solid #3498db; /* Couleur de la bordure supérieure (qui tourne) */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite; /* Animation de rotation */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+    </style>
+    
+</head>
+<div class="sidebar">
+    <button class="active" data-section="francais">Français</button>
+    <button data-section="mathematiques">Mathématiques</button>
+    <button id="histoire-btn" data-section="histoire-geographie">Histoire-Géographie</button>
+    <div class="sub-buttons" id="histoire-sub">
+        <button data-section="histoire">Histoire</button>
+        <button data-section="geographie">Géographie</button>
+    </div>
+    <button id="sciences-btn" data-section="sciences">Sciences</button>
+    <div class="sub-buttons" id="sciences-sub">
+        <button data-section="svt">SVT</button>
+        <button data-section="physique-chimie">Physique</button>
+        <button data-section="technologie">Technologie</button>
+    </div>
+    <button data-section="epreuve-orale">Épreuve Orale</button>
+    <div class="su-buttons">
+        <a href="about.html"><button>Plus</button></a>
+        <a href="index.html"><button>Accueil</button></a>
+    </div>
+    
+</div>
+
+    <div id="loader">
+        <div id="loader-spinner"></div>
+    </div>
+    
+<body>
+    
+
+        <!-- Matière : Français -->
+        <section id="francais">
+          <h2>Français</h2>
+          <p>Sont évalués sur 100 points.</p>
+          <div class="container">
+              <h1>23 Pages pour reviser</h1>
+              <div class="image-container">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-0.png" alt="Image 0">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-1.png" alt="Image 1">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-2.png" alt="Image 2">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-3.png" alt="Image 3">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-4.png" alt="Image 4">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-5.png" alt="Image 5">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-6.png" alt="Image 6">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-7.png" alt="Image 7">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-8.png" alt="Image 8">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-9.png" alt="Image 9">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-10.png" alt="Image 10">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-11.png" alt="Image 11">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-12.png" alt="Image 12">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-13.png" alt="Image 13">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-14.png" alt="Image 14">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-15.png" alt="Image 15">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-16.png" alt="Image 16">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-17.png" alt="Image 17">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-18.png" alt="Image 18">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-19.png" alt="Image 19">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-20.png" alt="Image 20">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-21.png" alt="Image 21">
+                <img src="REVISIONS/francais/689ebd040ef645009c070bdc7e3c0c35eaGMKXICEuDDdgoN-22.png" alt="Image 22">
+              </div>
+          </div>
+  
+      </section>
+  
+      <!-- Matière : Mathématiques -->
+      <section id="mathematiques">
+          <h2>Mathématiques</h2>
+          <p>Sont évalués sur 100 points.</p>
+          <div class="container">
+            <h1>3 Pages pour reviser</h1>
+            <div class="image-container">
+              <img src="REVISIONS/math/Toutes_les_formules_1_-_Numerique.png" alt="Image 0">
+              <img src="REVISIONS/math/Toutes_les_formules_2_-_Geometrie.png" alt="Image 1">
+              <img src="REVISIONS/math/Toutes_les_formules_3_-_Perimetres_aires_et_volumes.png" alt="Image 2">
+            </div>
+        </div>
+      </section>
+  
+      <!-- Matière : Histoire-Géographie -->
+      <section id="histoire-geographie">
+          <h2>Histoire-Géographie (Coming-Soon)</h2>
+          <div class="sous-matiere" id="histoire">
+              <h3>Histoire(Coming-Soon)</h3>
+              <p>Sont évaluées sur 25 points.</p>
+          </div>
+          <div class="sous-matiere" id="geographie">
+              <h3>Géographie(Coming-Soon)</h3>
+              <p>Sont évaluées sur 25 points.</p>
+          </div>
+      </section>
+  
+      <!-- Matière : Sciences -->
+      <section id="sciences">
+          <h2>Sciences</h2>
+          <div class="sous-matiere" id="physique-chimie">
+              <h3>Physique-Chimie</h3>
+              <p>Sont évaluées sur 17 points.</p>
+              <div class="container">
+                <h1>21 Pages pour reviser</h1>
+                <div class="image-container">
+                <img src="REVISIONS/phisique-chimie/0 .png" alt="Image 0">
+                <img src="REVISIONS/phisique-chimie/1.png" alt="Image 1">
+                <img src="REVISIONS/phisique-chimie/2.png" alt="Image 2">
+                <img src="REVISIONS/phisique-chimie/3.png" alt="Image 3">
+                <img src="REVISIONS/phisique-chimie/4.png" alt="Image 4">
+                <img src="REVISIONS/phisique-chimie/5.png" alt="Image 5">
+                <img src="REVISIONS/phisique-chimie/6.png" alt="Image 6">
+                <img src="REVISIONS/phisique-chimie/7.png" alt="Image 7">
+                <img src="REVISIONS/phisique-chimie/8.png" alt="Image 8">
+                <img src="REVISIONS/phisique-chimie/9.png" alt="Image 9">
+                <img src="REVISIONS/phisique-chimie/10.png" alt="Image 10">
+                <img src="REVISIONS/phisique-chimie/11.png" alt="Image 11">
+                <img src="REVISIONS/phisique-chimie/12.png" alt="Image 12">
+                <img src="REVISIONS/phisique-chimie/13.png" alt="Image 13">
+                <img src="REVISIONS/phisique-chimie/14.png" alt="Image 14">
+                <img src="REVISIONS/phisique-chimie/15.png" alt="Image 15">
+                <img src="REVISIONS/phisique-chimie/16.png" alt="Image 16">
+                <img src="REVISIONS/phisique-chimie/17.png" alt="Image 17">
+                <img src="REVISIONS/phisique-chimie/18.png" alt="Image 18">
+                <img src="REVISIONS/phisique-chimie/19.png" alt="Image 19">
+                <img src="REVISIONS/phisique-chimie/20.png" alt="Image 20">
+
+                </div>
+            </div>
+          </div>
+          <div class="sous-matiere" id="svt">
+              <h3>Sciences de la Vie et de la Terre (SVT)</h3>
+              <p>Sont évaluées sur 17 points.</p>
+              <div class="container">
+                <h1>24 Pages pour reviser</h1>
+                <div class="image-container">
+                <img src="REVISIONS/svt/0.png" alt="Image 0">
+                <img src="REVISIONS/svt/1.png" alt="Image 1">
+                <img src="REVISIONS/svt/2.png" alt="Image 2">
+                <img src="REVISIONS/svt/3.png" alt="Image 3">
+                <img src="REVISIONS/svt/4.png" alt="Image 4">
+                <img src="REVISIONS/svt/5.png" alt="Image 5">
+                <img src="REVISIONS/svt/6.png" alt="Image 6">
+                <img src="REVISIONS/svt/7.png" alt="Image 7">
+                <img src="REVISIONS/svt/8.png" alt="Image 8">
+                <img src="REVISIONS/svt/9.png" alt="Image 9">
+                <img src="REVISIONS/svt/10.png" alt="Image 10">
+                <img src="REVISIONS/svt/11.png" alt="Image 11">
+                <img src="REVISIONS/svt/12.png" alt="Image 12">
+                <img src="REVISIONS/svt/13.png" alt="Image 13">
+                <img src="REVISIONS/svt/14.png" alt="Image 14">
+                <img src="REVISIONS/svt/15.png" alt="Image 15">
+                <img src="REVISIONS/svt/16.png" alt="Image 16">
+                <img src="REVISIONS/svt/17.png" alt="Image 17">
+                <img src="REVISIONS/svt/18.png" alt="Image 18">
+                <img src="REVISIONS/svt/19.png" alt="Image 19">
+                <img src="REVISIONS/svt/20.png" alt="Image 20">
+                <img src="REVISIONS/svt/21.png" alt="Image 21">
+                <img src="REVISIONS/svt/22.png" alt="Image 22">
+                <img src="REVISIONS/svt/23.png" alt="Image 23">
+
+                </div>
+            </div>
+          </div>
+          <div class="sous-matiere" id="technologie">
+              <h3>Technologie</h3>
+              <p>Sont évaluées sur 16 points.</p>
+              <div class="container">
+                <h1>21 Pages pour reviser</h1>
+                <div class="image-container">
+                <img src="REVISIONS/techno/0.png" alt="Image 0">
+                <img src="REVISIONS/techno/1.png" alt="Image 1">
+                <img src="REVISIONS/techno/2.png" alt="Image 2">
+                <img src="REVISIONS/techno/3.png" alt="Image 3">
+                <img src="REVISIONS/techno/4.png" alt="Image 4">
+                <img src="REVISIONS/techno/5.png" alt="Image 5">
+                <img src="REVISIONS/techno/6.png" alt="Image 6">
+                <img src="REVISIONS/techno/7.png" alt="Image 7">
+                <img src="REVISIONS/techno/8.png" alt="Image 8">
+                </div>
+            </div>
+          </div>
+      </section>
+  
+      <!-- Épreuve Orale -->
+      <section id="epreuve-orale">
+          <h2>Épreuve Orale</h2>
+          <p>Est évaluée sur 100 points.</p>
+          <div class="container">
+            <h1>2 pages de conseil</h1>
+            <div class="image-container">
+            <img src="REVISIONS/conseil/conseil oral_page-0001.jpg" alt="Image 0">
+            <img src="REVISIONS/conseil/conseil oral_page-0002.jpg" alt="Image 1">
+            </div>
+        </div>
+        <div class="container">
+            <h1>Grille d'évaluation</h1>
+            <div class="image-container">
+            <img src="REVISIONS/conseil/grille-oral.png" alt="Image 0">
+            </div>
+        </div>
+
+      </section>
+
+
+    <script>
+        // Sélection des boutons Histoire et Sciences
+        const histoireBtn = document.getElementById('histoire-btn');
+        const sciencesBtn = document.getElementById('sciences-btn');
+
+        // Sélection des sous-boutons Histoire et Sciences
+        const histoireSub = document.getElementById('histoire-sub');
+        const sciencesSub = document.getElementById('sciences-sub');
+
+        // Fonction pour afficher les sous-boutons Histoire
+        histoireBtn.addEventListener('mouseover', function() {
+            histoireSub.style.maxHeight = "200px";
+        });
+
+        // Fonction pour cacher les sous-boutons Histoire
+        histoireBtn.addEventListener('mouseout', function() {
+            setTimeout(() => {
+                histoireSub.style.maxHeight = "0";
+            }, 300); // Délai de 300 millisecondes avant de réduire la hauteur maximale
+        });
+
+        // Fonction pour empêcher la réinitialisation de la hauteur des sous-boutons Histoire
+        histoireSub.addEventListener('mouseover', function() {
+            clearTimeout(histoireSub.timer);
+            histoireSub.style.maxHeight = "200px";
+        });
+
+        // Fonction pour cacher les sous-boutons Histoire lorsqu'on quitte les sous-boutons
+        histoireSub.addEventListener('mouseout', function() {
+            histoireSub.timer = setTimeout(() => {
+                histoireSub.style.maxHeight = "0";
+            }, 300); // Délai de 300 millisecondes avant de réduire la hauteur maximale
+        });
+
+        // Fonction pour afficher les sous-boutons Sciences
+        sciencesBtn.addEventListener('mouseover', function() {
+            sciencesSub.style.maxHeight = "200px";
+        });
+
+        // Fonction pour cacher les sous-boutons Sciences
+        sciencesBtn.addEventListener('mouseout', function() {
+            setTimeout(() => {
+                sciencesSub.style.maxHeight = "0";
+            }, 300); // Délai de 300 millisecondes avant de réduire la hauteur maximale
+        });
+
+        // Fonction pour empêcher la réinitialisation de la hauteur des sous-boutons Sciences
+        sciencesSub.addEventListener('mouseover', function() {
+            clearTimeout(sciencesSub.timer);
+            sciencesSub.style.maxHeight = "200px";
+        });
+
+        // Fonction pour cacher les sous-boutons Sciences lorsqu'on quitte les sous-boutons
+        sciencesSub.addEventListener('mouseout', function() {
+            sciencesSub.timer = setTimeout(() => {
+                sciencesSub.style.maxHeight = "0";
+            }, 300); // Délai de 300 millisecondes avant de réduire la hauteur maximale
+        });
+    </script>
+   <script> window.addEventListener('load', function() {
+        // Masquer le loader une fois que la page est entièrement chargée
+        document.getElementById('loader').style.display = 'none';
+    });
+    </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Fonction pour faire défiler jusqu'à une section spécifique
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Ajout des gestionnaires d'événements de clic aux boutons principaux
+        document.querySelectorAll('.sidebar button').forEach(button => {
+            button.addEventListener('click', function() {
+                const sectionId = this.getAttribute('data-section');
+                scrollToSection(sectionId);
+            });
+        });
+
+        // Ajout des gestionnaires d'événements de clic aux sous-boutons
+        document.querySelectorAll('.sub-buttons button').forEach(button => {
+            button.addEventListener('click', function() {
+                const sectionId = this.getAttribute('data-section');
+                scrollToSection(sectionId);
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

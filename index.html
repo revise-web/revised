@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./icons/favicon-16x16.png">
+<link rel="manifest" href="./icons/site.webmanifest">
+<link rel="mask-icon" href="./icons/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+  <title>Revisse • Home</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./CSS/navbar.css">
+  <link rel="stylesheet" href="./CSS/cursor.css">
+  <style>
+
+body, html {
+    /* Largeur maximale de la zone de défilement */
+    max-width: 100%;
+    /* Hauteur maximale de la zone de défilement */
+    max-height: 100%;
+    /* Débordement auto pour activer le défilement en cas de besoin */
+    overflow: auto;
+    /* Masquer la barre de défilement */
+    scrollbar-width: none; /* Pour Firefox */
+    -ms-overflow-style: none; /* Pour IE et Edge */
+}
+
+/* Styles spécifiques pour Chrome, Safari et Opera */
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
+    display: none;
+}
+
+    /* Styles pour les éléments cliquables */
+a,
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select,
+textarea, .cvcv {
+    cursor: url('./cursors/cursor-pointer.png') , auto
+}
+
+/* Styles pour les éléments désactivés */
+[disabled] {
+    cursor: not-allowed;
+}
+/* Styles pour tous les éléments de texte */
+p,
+h1, h2, h3, h4, h5, h6,
+ul, ol, li,
+span,
+blockquote,
+pre {
+    cursor: url('./cursors/cursor-text.png') , auto
+}
+html, body, section, div, header, footer:hover{
+    cursor: url('./cursors/cursor-normal.png') , auto
+}
+    /* Ajoutez votre CSS personnalisé ici */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      margin-top: 6px; /* La hauteur de la navbar */
+    }
+    /* Styles de la barre de navigation */
+    
+    /* Styles de la flèche de retour vers le haut */
+    .haut {
+      position: fixed;
+      bottom: 5px;
+      right: 10px;
+      border-radius: 20000px;
+      background: linear-gradient(45deg, #0019FF, #ff3333, #0019FF);
+      transition: all 10;
+    }
+    .haut:hover {
+      position: fixed;
+      bottom: 5px;
+      right: 10px;
+      border-radius: 20000px;
+      background: linear-gradient(45deg, #ff3333, #0019FF, #ff3333);
+    }
+    .haut a img {
+      width: 50px;
+      height: 50px;
+      transition: all 1.5s;
+    }
+    /* Styles de la bannière héroïque */
+    .hero-banner {
+      height: 100vh;
+      background-image: url('votre-image.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-btn {
+      width: 200px;
+      height: 60px;
+      font-size: 1.3rem;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      position: relative;
+      color: #0117DC;
+      z-index: 0;
+      border: 1px solid #892cdc;
+      background: white;
+      overflow: hidden;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 7px;
+    }
+    .hero-btn::before {
+      content: '';
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0117DC;
+      border-radius: 50% 50% 0% 0%;
+      z-index: -1;
+      transition: all .5s;
+    }
+    .hero-btn:hover::before {
+      top: 0px;
+      border-radius: 0;
+    }
+    .hero-btn span::before {
+      content: "Découvrir";
+      color: #0117DC;
+    }
+    .hero-btn:hover span::before {
+      content: "Découvrir↯";
+      color: white;
+    }
+    *{
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+.ytr:hover{
+    cursor: url('./cursors/cursor-pointer.png') , auto;
+}
+
+.btn{
+  padding: 23.5px;
+  background: #ffffff00;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  border-radius: 30px;
+}
+.popup{
+  width: 400px;
+  background: #fff;
+  border-radius:6px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.1);
+  text-align: center;
+  padding: 0 30px 30px;
+  color: #333;
+  visibility: hidden;
+  transition: transform 0.4s, top 0.4s;
+  z-index: 2;
+}
+.open-popup{
+  visibility: visible;
+  top: 80%;
+  transform: translate(-50%, -50%) scale(1);
+}
+.ppm{
+  width: 100px;
+  margin-top: -50px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all .5s;
+}
+.ppm:hover{
+  width: 100px;
+  margin-top: -50px;
+  border-radius: 50%;
+  transform: rotateZ(360deg);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.popup h2{
+  font-size: 38px;
+  font-weight: 500;
+  margin: 30px 0 10px;
+}
+.popup button{
+  width: 100%;
+  margin-top: 50px;
+  padding: 10px 0;
+  background: #6fd649;
+  color: #fff;
+  border: 0;
+  outline: none;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: url('./cursors/cursor-pointer.png');
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+.pp{
+  width: 100px;
+  margin-top: 0px;
+  border-radius: 50%;
+  box-shadow: 0px 20px 0px 0px rgba(0, 0, 0, 0.2)
+}
+.pp:hover{
+  width: 110px;
+  margin-top: 0px;
+  border-radius: 50%;
+  box-shadow: 0px 20px 0px 0px rgba(0, 0, 0, 0.2);
+  cursor: url("cursors/cursor-pointer.png"), auto;
+}
+/* Définir le pointeur personnalisé */
+body{
+    cursor: url('cursor/votre-logo.png'), auto;
+}
+*::selection {
+    background-color: RGB(1 24 219); /* Change background color on selection */
+    color: #000; /* Change text color on selection */
+  }
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="popup" id="popup">
+      <img class="ppm" src="https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihYj13j5u2uln5i82KRyUwHEi5fy5_V5RhTJDONPbI5DzNjvo89a3HKGQ21pEZhHp9OXPDTngDYAn3-4dty1Off77_yqD315pA=w681-h606">
+      <h2>Information</h2>
+      <p>voici toute les information utiles à savoir sur: <b>@revise.web             
+      </p>
+
+      <div class="myvoice._yt dinfo">
+        <a class="ppl"><img src="https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihZgMhB-w9YpfKQOxsQrKKI5vfpE_BbY3nEFvtACeI5beYIn_LML_nzGzjOJmfizsJ-0sWXZ2TSnqWz3EqceyIYSiB5rqWWIzpw=w1365-h640" alt="myvoicelogo" class="pp"></a>
+        <h3 class="desc"><b> @myvoice._yt</b></h3>
+        <p class="info">info</p>
+      </div>
+      <h1>______________</h1>
+      <div class="asma_attm dinfo">
+        <img src="https://lh3.googleusercontent.com/u/0/drive-viewer/AKGpihYmHRtft8Ps0WuatijJzU_mNL2B8oPxacID3x--FQnWo0Ls26eOoDNGl4chUvVkhI-QrTUlLJbiSYsVCoYL017og6PYhX3EJsQ=w1365-h640" alt="asminalogo" class="pp">
+        <h3 class="desc"><b> @asma_attm</b></h3>
+        <p class="info"> Lorem </p>
+      </div>
+      <button class="ytr" type="button" onclick="closePopup()">fermer</button>
+    </div>
+  </div>
+<div id="fleche" class="haut">
+  <a href="#"><img src="arrow-up-svgrepo-com.png" alt="retour vers le haut !"></a>
+</div>
+<nav id="mainNavbar" class="navbar navbar-expand-lg navbar-light fixed-top">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <a class="navbar-brand btn" onclick="openPopup()"><img class="cvcv" src="votre-logo.png" alt="Logo" height="45"></a>
+    <a href="#" class="nav-link nav-anime">Home</a>
+    <a href="about.html" class="nav-link nav-anime">About</a>
+    <a href="https://revise-5.creator-spring.com/" class="nav-link nav-anime">Product</a>
+    <a href="reviser.html" class="nav-link nav-anime">Revise</a>
+    <a href="contact.html" class="nav-link nav-anime">Contact</a>
+    <span class="nav-cober"></span>
+  </div>
+</nav>
+
+<div class="hero-banner">
+  <a href="#presentation" class="hero-btn">
+    <span></span>
+  </a>
+</div>
+
+<section id="presentation" class="py-5">
+  <div class="container">
+    <h2>Présentation du site</h2>
+    <p>Ici vous pouvez présenter votre site.
+      <br>
+      Ce site a été crée dans le but d'aider les collégiens(nes)
+      <br>
+      à réviser leur Diplôme National du Brevêt (D.N.B)
+      <br>
+      qui a lieu le lundi 1er et le mardi 2 juillet 2024 pour
+      <br>
+      la session normale et les jeudi 19 et vendredi
+      <br>
+      20 septembre 2024 pour la session de remplacement.
+    </p>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <h2>Ce que vous pouvez faire sur le site</h2>
+    <p>Ici vous pouvez reviser votrez brevet, preparer votre oral et bien plus encore à venir😁.
+    </p>
+  </div>
+</section>
+
+<footer class="bg-dark text-light py-4">
+  <div class="container text-center">
+    <p>Suivez-nous sur Instagram: <a href="https://www.instagram.com/revise.web/">@revise.web</a></p>
+    <p>Visitez notre boutique: <a href="https://revise-5.creator-spring.com/">Revise Shop</a></p>
+    <p>fake "&copy;" 2024 revise. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  // Ecouteur d'événements pour le bouton "retour vers le haut"
+  document.querySelector('#fleche a').addEventListener('click', function(event) {
+    event.preventDefault(); // Empêche le comportement par défaut du lien
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Faites défiler vers le haut en douceur
+  });
+
+  // Ecouteur d'événements pour le lien dans la bannière héroïque
+  document.querySelector('.hero-btn').addEventListener('click', function(event) {
+    event.preventDefault(); // Empêche le comportement par défaut du lien
+    var targetSection = document.querySelector('#presentation'); // Sélectionnez la section cible
+    var targetSectionPosition = targetSection.offsetTop; // Obtenez la position de la section cible
+    window.scrollTo({ top: targetSectionPosition, behavior: 'smooth' }); // Faites défiler vers la section cible en douceur
+  });
+</script>
+<script>
+  let popup = document.getElementById("popup");
+
+function openPopup(){
+  popup.classList.add("open-popup");
+}
+function closePopup(){
+  popup.classList.remove("open-popup");
+}
+</script>
+<script>
+  document.addEventListener('contextmenu', event => event.preventDefault());
+</script>
+
+</body>
+</html>

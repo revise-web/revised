@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./CSS/cursor.css">
+<title>Revisse • Contact</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        cursor: url('./cursors/cursor-normal.png') , auto;
+    }
+    html{
+        cursor: url('./cursors/cursor-normal.png') , auto;
+    }
+    .container-form {
+        max-width: 500px;
+        margin: 90px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        cursor: url('./cursors/cursor-normal.png') , auto;
+    }
+    h2, p, label{
+        cursor: url('./cursors/cursor-text.png') , auto;
+    }
+    input[type="text"], textarea {
+        width: 100%;
+        padding: 8px;
+        margin: 6px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 4px;
+        cursor: url('./cursors/cursor-text.png') , auto;
+    }
+    #email{
+        cursor: url('./cursors/cursor-text.png') , auto;
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: url('./cursors/cursor-pointer.png') , auto;
+    }
+    .social img{
+        width: 40px;
+    border-radius: 10%;
+    margin: 10px 5px;
+    transition: background 0.5s;
+    }
+    .social img:hover{
+        background:violet;
+        cursor: url('./cursors/cursor-pointer.png') , auto;
+    }
+    .social{
+        background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    cursor: url('./cursors/cursor-normal.png') , auto;
+    }
+    img{
+    width: 20px;
+    border-radius: 10%;
+    }
+</style>
+</head>
+<body>
+<div class="container-form">
+    <h2>📩Contactez-nous📩<img src="votre-logo.png" alt=""></h2>
+    <form id="contactForm">
+        <label for="email">Email :</label>
+        <input type="text" id="email" name="email" required>
+        <label for="message">Message :</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+        <input type="submit" value="Envoyer">
+    </form>
+</div>
+<div class="social">
+    <a href="index.html"><img src="Media/home-svgrepo-com.svg"></a>
+    <a href="https://revise-5.creator-spring.com/"><img src="Media/store-svgrepo-com.svg"></a>
+    <a href="https://ko-fi.com/revise"><img src="Media/coffe-to-go-svgrepo-com.svg"></a>
+    <a href="reviser.html"><img src="Media/learn-svgrepo-com.svg"></a>
+</div>
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var email = document.getElementById('email').value;
+        var message = document.getElementById('message').value;
+        window.location.href = 'mailto:contact.revise.pro@gmail.com?subject=Contact%20Form&body=Email:%20' + email + '%0A%0A' + message;
+    });
+</script>
+<script>
+    document.addEventListener('contextmenu', event => event.preventDefault());
+</script>
+
+</body>
+</html>
